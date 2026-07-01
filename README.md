@@ -1,149 +1,120 @@
+
 # EcoHome Energy Advisor
 
 An AI-powered energy optimization agent that helps customers reduce electricity costs and environmental impact through personalized recommendations.
 
 ## Project Overview
 
-EcoHome is a smart-home energy start-up that helps customers with solar panels, electric vehicles, and smart thermostats optimize their energy usage. The Energy Advisor agent provides personalized recommendations about when to run devices to minimize costs and carbon footprint.
+EcoHome is a smart-home energy solution that helps customers with solar panels, electric vehicles, and smart thermostats optimize their energy usage. The Energy Advisor agent provides precision recommendations on when to operate devices to minimize costs and reduce carbon footprints.
 
 ### Key Features
 
-- **Weather Integration**: Uses weather forecasts to predict solar generation
-- **Dynamic Pricing**: Considers time-of-day electricity prices for cost optimization
-- **Historical Analysis**: Queries past energy usage patterns for personalized advice
-- **RAG Pipeline**: Retrieves relevant energy-saving tips and best practices
-- **Multi-device Optimization**: Handles EVs, HVAC, appliances, and solar systems
-- **Cost Calculations**: Provides specific savings estimates and ROI analysis
+* **Weather Integration**: Utilizes hyper-local weather forecasts to predict solar generation potential.
+* **Dynamic Pricing**: Analyzes real-time, time-of-day electricity pricing for cost optimization.
+* **Historical Analysis**: Queries longitudinal energy usage patterns to generate tailored advice.
+* **RAG Pipeline**: Leverages a Retrieval-Augmented Generation pipeline to surface evidence-based energy-saving best practices.
+* **Multi-device Optimization**: Intelligently manages orchestration for EVs, HVAC, appliances, and solar systems.
+* **Cost Calculations**: Provides granular savings estimates and ROI analysis.
 
 ## Project Structure
 
-```
-ecohome_starter/
+```text
+ecohome_core/
 ├── models/
 │   ├── __init__.py
-│   └── energy.py              # Database models for energy data
+│   └── energy.py              # Database models for energy infrastructure
 ├── data/
 │   └── documents/
 │       ├── tip_device_best_practices.txt
 │       └── tip_energy_savings.txt
-├── agent.py                   # Main Energy Advisor agent
+├── agent.py                   # Main Energy Advisor agent logic
 ├── tools.py                   # Agent tools (weather, pricing, database, RAG)
 ├── requirements.txt           # Python dependencies
-├── 01_db_setup.ipynb         # Database setup and sample data
-├── 02_rag_setup.ipynb        # RAG pipeline setup
-├── 03_agent_evaluation.ipynb # Agent testing and evaluation
-├── 04_agent_run.ipynb        # Running the agent with examples
-└── README.md                  # This file
+├── 01_db_setup.ipynb          # Database schema initialization and data ingestion
+├── 02_rag_setup.ipynb         # RAG pipeline configuration
+├── 03_agent_evaluation.ipynb  # Agent performance validation
+├── 04_agent_run.ipynb         # Production-ready agent execution
+└── README.md                  # Project documentation
+
 ```
 
-## Setup Instructions
+## Deployment Instructions
 
 ### 1. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+
 ```
 
-### 2. Set Environment Variables
+### 2. Configure Environment
 
-Create a `.env` file with your API keys:
+Create a `.env` file with the required API credentials:
 
-```bash
+```text
 VOCAREUM_API_KEY=your_vocareum_api_key_here
 OPENAI_API_KEY=your_openai_api_key_here
+
 ```
 
-### 3. Run the Notebooks
+### 3. Execution Workflow
 
-Execute the notebooks in order:
+Execute the modules in the following order:
 
-1. **01_db_setup.ipynb** - Set up the database and populate with sample data
-2. **02_rag_setup.ipynb** - Configure the RAG pipeline for energy tips
-3. **03_agent_evaluation.ipynb** - Test and evaluate the agent
-4. **04_agent_run.ipynb** - Run the agent with example scenarios
+1. **01_db_setup.ipynb**: Initializes the relational database and populates system data.
+2. **02_rag_setup.ipynb**: Configures the vector store and RAG retrieval parameters.
+3. **03_agent_evaluation.ipynb**: Conducts rigorous performance and accuracy testing.
+4. **04_agent_run.ipynb**: Executes the agent within defined operational scenarios.
 
 ## Agent Capabilities
 
-### Tools Available
+### Operational Tools
 
-- **Weather Forecast**: Get hourly weather predictions and solar irradiance
-- **Electricity Pricing**: Access time-of-day pricing data
-- **Energy Usage Query**: Retrieve historical consumption data
-- **Solar Generation Query**: Get past solar production data
-- **Energy Tips Search**: Find relevant energy-saving recommendations
-- **Savings Calculator**: Compute potential cost savings
+* **Weather Forecast**: Retrieves hourly predictions and solar irradiance levels.
+* **Electricity Pricing**: Accesses time-of-day pricing indices.
+* **Energy Usage Query**: Extracts historical consumption metrics.
+* **Solar Generation Query**: Processes past solar production throughput.
+* **Energy Tips Search**: Searches for optimized energy-saving protocols.
+* **Savings Calculator**: Computes projected cost reductions and efficiency gains.
 
-### Example Questions
+### Example Queries
 
-The Energy Advisor can answer questions like:
+* "When should I charge my electric vehicle tomorrow to minimize cost while maximizing solar self-consumption?"
+* "What is the optimal thermostat setpoint for Wednesday afternoon given predicted electricity price spikes?"
+* "Analyze my usage history and suggest three high-impact strategies to reduce energy overhead."
+* "Quantify the potential savings of shifting dishwasher operation to off-peak hours."
 
-- "When should I charge my electric car tomorrow to minimize cost and maximize solar power?"
-- "What temperature should I set my thermostat on Wednesday afternoon if electricity prices spike?"
-- "Suggest three ways I can reduce energy use based on my usage history."
-- "How much can I save by running my dishwasher during off-peak hours?"
+## Technical Specifications
 
-## Database Schema
+### Data Schema
 
-### Energy Usage Table
-- `timestamp`: When the energy was consumed
-- `consumption_kwh`: Amount of energy used
-- `device_type`: Type of device (EV, HVAC, appliance)
-- `device_name`: Specific device name
-- `cost_usd`: Cost at time of usage
+| Table | Primary Data Points |
+| --- | --- |
+| **Energy Usage** | `timestamp`, `consumption_kwh`, `device_type`, `device_name`, `cost_usd` |
+| **Solar Generation** | `timestamp`, `generation_kwh`, `weather_condition`, `temperature_c`, `solar_irradiance` |
 
-### Solar Generation Table
-- `timestamp`: When the energy was generated
-- `generation_kwh`: Amount of solar energy produced
-- `weather_condition`: Weather during generation
-- `temperature_c`: Temperature at time of generation
-- `solar_irradiance`: Solar irradiance level
+### Core Technologies
 
-## Learning Objectives
+* **LangChain**: Orchestration framework for agentic workflows and tool integration.
+* **LangGraph**: Specialized agent state management.
+* **ChromaDB**: High-performance vector database for efficient document retrieval.
+* **SQLAlchemy**: Robust Object-Relational Mapping (ORM) for data management.
+* **OpenAI**: Foundation for LLM reasoning and embedding generation.
+* **SQLite**: Reliable, low-latency local storage.
 
-This project helps students learn:
+## Performance Standards
 
-1. **Database Design**: Creating schemas for energy management systems
-2. **API Integration**: Working with external weather and pricing APIs
-3. **RAG Implementation**: Building retrieval-augmented generation pipelines
-4. **Agent Development**: Creating intelligent agents with tool usage
-5. **Evaluation Methods**: Testing and measuring agent performance
-6. **Energy Optimization**: Understanding smart home energy management
+The EcoHome Energy Advisor is held to the following standards:
 
-## Key Technologies
+* **Accuracy**: Precise extraction of data and error-free financial modeling.
+* **Relevance**: Direct, contextual alignment between user queries and output.
+* **Completeness**: Holistic, actionable advice.
+* **Tool Utilization**: Efficient, logical invocation of external APIs and databases.
+* **Reasoning**: Transparent, logical derivation of all optimization recommendations.
 
-- **LangChain**: Agent framework and tool integration
-- **LangGraph**: Agent orchestration and workflow
-- **ChromaDB**: Vector database for document retrieval
-- **SQLAlchemy**: Database ORM and management
-- **OpenAI**: LLM and embeddings
-- **SQLite**: Local database storage
+## Roadmap
 
-## Evaluation Criteria
+* Integration of advanced, real-time demand-response algorithms.
+* Implementation of expanded multi-modal data processing.
+* Development of a real-time dashboard for enhanced user visualization.
 
-The agent is evaluated on:
-
-- **Accuracy**: Correct information and calculations
-- **Relevance**: Responses address the user's question
-- **Completeness**: Comprehensive answers with actionable advice
-- **Tool Usage**: Appropriate use of available tools
-- **Reasoning**: Clear explanation of recommendations
-
-## Getting Started
-
-1. Clone this repository
-2. Install the required dependencies
-3. Set up your environment variables
-4. Run the notebooks in sequence
-5. Test the agent with your own questions
-
-## Contributing
-
-This is a learning project. Feel free to:
-- Add new tools and capabilities
-- Improve the evaluation metrics
-- Enhance the RAG pipeline
-- Add more sophisticated optimization algorithms
-
-## License
-
-This project is for educational purposes as part of the Udacity Course 2 curriculum.
